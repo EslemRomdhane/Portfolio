@@ -4,7 +4,7 @@ Bienvenue sur mon portfolio ! Ici, vous pouvez voir mes projets, compétences et
 
 ## Aperçu
 
-![Aperçu du portfolio](./screenshot.PNG)
+![Aperçu du portfolio](./screenshot.png)
 
 ## Technologies utilisées
 - Next.js 13
