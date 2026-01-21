@@ -8,13 +8,36 @@ import { Github, Linkedin } from "lucide-react"
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
-    setFormData({ name: "", email: "", subject: "", message: "" })
+    setLoading(true)
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+
+      if (data.success) {
+        setSubmitted(true)
+        setTimeout(() => setSubmitted(false), 3000)
+        setFormData({ name: "", email: "", subject: "", message: "" })
+      } else {
+        alert("Failed to send email: " + (data.error || "Unknown error"))
+      }
+    } catch (err) {
+      console.error(err)
+      alert("An error occurred while sending the email.")
+    } finally {
+      setLoading(false)
+    }
   }
+
 
   return (
     <section
@@ -58,7 +81,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs sm:text-sm text-foreground/60 mb-1">Location</p>
-                    <p className="text-sm sm:text-base text-foreground">Tunis, Tunisia</p>
+                    <p className="text-sm sm:text-base text-foreground">Monastir, Tunisia</p>
                   </div>
                   <div>
                     <p className="text-xs sm:text-sm text-foreground/60 mb-1">Status</p>
@@ -81,7 +104,7 @@ export default function Contact() {
                   GitHub
                 </a>
                 <a
-                  href="https://linkedin.com/in/eslem-romdhane"
+                  href="https://www.linkedin.com/in/eslem-romdhane-677aa922b"
                   className="inline-flex items-center gap-2 text-foreground/70 hover:text-primary transition text-sm sm:text-base"
                 >
                   <Linkedin size={20} />
@@ -144,11 +167,12 @@ export default function Contact() {
                 placeholder="Tell me about your project..."
               />
             </div>
-            <button
+           <button
               type="submit"
-              className="w-full bg-primary text-primary-foreground font-semibold py-2 text-sm sm:text-base rounded-lg hover:opacity-90 active:scale-95 transition-all"
+              disabled={loading}
+              className="w-full bg-primary text-primary-foreground font-semibold py-2 text-sm sm:text-base rounded-lg hover:opacity-90 active:scale-95 transition-all disabled:opacity-50"
             >
-              Send Message
+              {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
         </div>

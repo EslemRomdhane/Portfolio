@@ -59,7 +59,7 @@ export default function Hero() {
             </p>
 
             <div className="pt-6 sm:pt-8 space-y-4">
-              <div className="text-sm sm:text-base text-foreground/70">📍 Tunis, Tunisia</div>
+              <div className="text-sm sm:text-base text-foreground/70">📍 Monastir, Tunisia</div>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-2 text-sm sm:text-base">
                 <a href="tel:+21655516598" className="text-foreground/70 hover:text-primary transition">
                   +216 55 516 598
@@ -88,7 +88,7 @@ export default function Hero() {
           <div className="flex justify-center md:justify-end mt-8 md:mt-0">
             <div className="relative w-64 sm:w-72 h-80 sm:h-96 rounded-2xl overflow-hidden border-2 border-primary/20 shadow-2xl flex-shrink-0">
               <Image
-                src="/eslem.jpg"
+                src="/eslem.jpeg"
                 alt="Eslem Romdhane - Software Engineer & AI Researcher"
                 fill
                 className="object-cover object-center"

@@ -69,7 +69,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://linkedin.com/in/eslem-romdhane"
+                  href="https://www.linkedin.com/in/eslem-romdhane-677aa922b"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground/70 hover:text-primary transition"
